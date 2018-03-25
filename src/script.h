@@ -1,9 +1,9 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2012 The Bitcoin developers
+// Copyright (c) 2009-2012 The Bitcoinold developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef H_BITCOIN_SCRIPT
-#define H_BITCOIN_SCRIPT
+#ifndef H_BITCOINOLD_SCRIPT
+#define H_BITCOINOLD_SCRIPT
 
 #include <string>
 #include <vector>
@@ -35,7 +35,6 @@ enum
     SCRIPT_VERIFY_P2SH      = (1U << 0),
     SCRIPT_VERIFY_STRICTENC = (1U << 1),
     SCRIPT_VERIFY_NOCACHE   = (1U << 2),
-    SCRIPT_VERIFY_DERSIG    = (1U << 3), // enforce signature encodings as defined by BIP 66 (which is a softfork, while STRICTENC is not)
 };
 
 enum txnouttype
@@ -58,7 +57,7 @@ public:
  *  * CNoDestination: no destination set
  *  * CKeyID: TX_PUBKEYHASH destination
  *  * CScriptID: TX_SCRIPTHASH destination
- *  A CTxDestination is the internal data type encoded in a CBitcoinAddress
+ *  A CTxDestination is the internal data type encoded in a CBitcoinoldAddress
  */
 typedef boost::variant<CNoDestination, CKeyID, CScriptID> CTxDestination;
 
@@ -519,7 +518,7 @@ public:
         return nFound;
     }
 
-    // Pre-version-0.6, Bitcoin always counted CHECKMULTISIGs
+    // Pre-version-0.6, Bitcoinold always counted CHECKMULTISIGs
     // as 20 sigops. With pay-to-script-hash, that changed:
     // CHECKMULTISIGs serialized in scriptSigs are
     // counted more accurately, assuming they are of the form

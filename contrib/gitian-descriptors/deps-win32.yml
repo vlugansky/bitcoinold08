@@ -1,7 +1,7 @@
 ---
-name: "bitcoin-deps"
+name: "bitcoinold-deps"
 suites:
-- "lucid"
+- "trusty"
 architectures:
 - "i386"
 packages:
@@ -22,7 +22,7 @@ files:
 - "qrencode-3.2.0.tar.bz2"
 script: |
   #
-  export LD_PRELOAD=/usr/lib/faketime/libfaketime.so.1
+  LD_PRELOAD=/usr/local/bin/faketime/libfaketime.so.1:/usr/local/bin/faketime/libfaketime64.so.1
   export FAKETIME=$REFERENCE_DATETIME
   export TZ=UTC
   #
@@ -63,10 +63,11 @@ script: |
   make $MAKEOPTS
   cd ..
   #
-  zip -r $OUTDIR/bitcoin-deps-0.0.5.zip \
+  zip -r $OUTDIR/bitcoinold-deps-0.0.5.zip \
     $(ls qrencode-*/{qrencode.h,.libs/libqrencode.{,l}a} | sort) \
     $(ls db-*/build_unix/{libdb_cxx.a,db.h,db_cxx.h,libdb.a,.libs/libdb_cxx-?.?.a} | sort) \
     $(find openssl-* -name '*.a' -o -name '*.h' | sort) \
     $(find miniupnpc -name '*.h' -o -name 'libminiupnpc.a' | sort)
   # Kill wine processes as gitian won't figure out we are done otherwise
-  killall wineserver services.exe explorer.exe winedevice.exe
+
+  wineserver -k; for i in `ps ax|egrep "*\.exe"|grep -v 'egrep'|awk '{print $1 }'`;do kill -9 $i;done

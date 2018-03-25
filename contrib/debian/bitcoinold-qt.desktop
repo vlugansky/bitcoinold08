@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Bitcoinold
+Comment=Bitcoinold P2P Cryptocurrency
+Comment[fr]=Bitcoinold, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Bitcoinold, eşten eşe kriptografik sanal para birimi
+Exec=/usr/bin/bitcoinold-qt %u
+Terminal=false
+Type=Application
+Icon=/usr/share/pixmaps/bitcoinold128.png
+MimeType=x-scheme-handler/bitcoinold;
+Categories=Office;
