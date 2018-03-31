@@ -1,9 +1,11 @@
 #include "splashscreen.h"
 #include "clientversion.h"
+
+#include <QApplication>
+
 #include "util.h"
 
 #include <QPainter>
-#include <QApplication>
 
 SplashScreen::SplashScreen(const QPixmap &pixmap, Qt::WindowFlags f) :
     QSplashScreen(pixmap, f)
