@@ -1,4 +1,4 @@
-TEMPLATE = app
+EMPLATE = app
 TARGET = bitcoin-qt
 macx:TARGET = "Bitcoin-Qt"
 VERSION = 0.8.6
@@ -284,7 +284,6 @@ SOURCES += src/qt/bitcoin.cpp \
     src/leveldb.cpp \
     src/txdb.cpp \
     src/qt/splashscreen.cpp \
-    src/qt/macnotificationhandler.cpp
 
 RESOURCES += src/qt/bitcoin.qrc
 
@@ -398,6 +397,7 @@ win32:!contains(MINGW_THREAD_BUGFIX, 0) {
 }
 
 macx:HEADERS += src/qt/macdockiconhandler.h
+macx:SOURCES += src/qt/macnotificationhandler.cpp
 macx:OBJECTIVE_SOURCES += src/qt/macdockiconhandler.mm
 macx:LIBS += -framework Foundation -framework ApplicationServices -framework AppKit
 macx:DEFINES += MAC_OSX MSG_NOSIGNAL=0
@@ -423,5 +423,6 @@ contains(RELEASE, 1) {
         LIBS += -Wl,-Bdynamic
     }
 }
+
 
 system($$QMAKE_LRELEASE -silent $$TRANSLATIONS)
