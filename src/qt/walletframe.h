@@ -1,15 +1,15 @@
 /*
- * Qt4 bitcoin GUI.
+ * Qt4 bitcoinold GUI.
  *
  * W.J. van der Laan 2011-2012
- * The Bitcoin Developers 2011-2013
+ * The Bitcoinold Developers 2011-2013
  */
 #ifndef WALLETFRAME_H
 #define WALLETFRAME_H
 
 #include <QFrame>
 
-class BitcoinGUI;
+class BitcoinoldGUI;
 class ClientModel;
 class WalletModel;
 class WalletStack;
@@ -18,7 +18,7 @@ class WalletFrame : public QFrame
 {
     Q_OBJECT
 public:
-    explicit WalletFrame(BitcoinGUI *_gui);
+    explicit WalletFrame(BitcoinoldGUI *_gui);
     ~WalletFrame();
 
     void setClientModel(ClientModel *clientModel);
@@ -33,7 +33,7 @@ public:
     void showOutOfSyncWarning(bool fShow);
 
 private:
-    BitcoinGUI *gui;
+    BitcoinoldGUI *gui;
     ClientModel *clientModel;
     WalletStack *walletStack;
 

@@ -1,11 +1,11 @@
 /*
- * Qt4 bitcoin GUI.
+ * Qt4 bitcoinold GUI.
  *
  * W.J. van der Laan 2011-2012
- * The Bitcoin Developers 2011-2013
+ * The Bitcoinold Developers 2011-2013
  */
 #include "walletframe.h"
-#include "bitcoingui.h"
+#include "bitcoinoldgui.h"
 #include "walletstack.h"
 
 #include <QVBoxLayout>
@@ -13,7 +13,7 @@
 
 #include <stdio.h>
 
-WalletFrame::WalletFrame(BitcoinGUI *_gui) :
+WalletFrame::WalletFrame(BitcoinoldGUI *_gui) :
     QFrame(_gui),
     gui(_gui),
     clientModel(0)
@@ -22,7 +22,7 @@ WalletFrame::WalletFrame(BitcoinGUI *_gui) :
     QHBoxLayout *walletFrameLayout = new QHBoxLayout(this);
     setContentsMargins(0,0,0,0);
     walletStack = new WalletStack(this);
-    walletStack->setBitcoinGUI(gui);
+    walletStack->setBitcoinoldGUI(gui);
     walletFrameLayout->setContentsMargins(0,0,0,0);
     walletFrameLayout->addWidget(walletStack);
 }

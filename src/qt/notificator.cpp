@@ -16,13 +16,20 @@
 #include <stdint.h>
 #endif
 
+// QT5.10
+// #ifdef Q_OS_MAC
+//#include <ApplicationServices/ApplicationServices.h>
+//extern bool qt_mac_execute_apple_script(const QString &script, AEDesc *ret);
+//#endif
 #ifdef Q_OS_MAC
 #include <ApplicationServices/ApplicationServices.h>
-extern bool qt_mac_execute_apple_script(const QString &script, AEDesc *ret);
+#include <qt/macnotificationhandler.h>
 #endif
 
+#ifdef USE_DBUS
 // https://wiki.ubuntu.com/NotificationDevelopmentGuidelines recommends at least 128
 const int FREEDESKTOP_NOTIFICATION_ICON_SIZE = 128;
+#endif
 
 Notificator::Notificator(const QString &programName, QSystemTrayIcon *trayicon, QWidget *parent):
     QObject(parent),
@@ -46,6 +53,9 @@ Notificator::Notificator(const QString &programName, QSystemTrayIcon *trayicon, 
         mode = Freedesktop;
     }
 #endif
+
+// QT5
+/*
 #ifdef Q_OS_MAC
     // Check if Growl is installed (based on Qt's tray icon implementation)
     CFURLRef cfurl;
@@ -62,6 +72,14 @@ Notificator::Notificator(const QString &programName, QSystemTrayIcon *trayicon, 
         CFRelease(bundle);
     }
 #endif
+*/
+#ifdef Q_OS_MAC
+    // check if users OS has support for NSUserNotification
+    if( MacNotificationHandler::instance()->hasUserNotificationCenterSupport()) {
+        mode = UserNotificationCenter;
+    }
+#endif
+
 }
 
 Notificator::~Notificator()
@@ -224,6 +242,8 @@ void Notificator::notifySystray(Class cls, const QString &title, const QString &
     trayIcon->showMessage(title, text, sicon, millisTimeout);
 }
 
+//QT5
+/*
 // Based on Qt's tray icon implementation
 #ifdef Q_OS_MAC
 void Notificator::notifyGrowl(Class cls, const QString &title, const QString &text, const QIcon &icon)
@@ -272,6 +292,16 @@ void Notificator::notifyGrowl(Class cls, const QString &title, const QString &te
     qt_mac_execute_apple_script(script.arg(notificationApp, quotedTitle, quotedText, notificationIcon, growlApp), 0);
 }
 #endif
+*/
+// Based on Qt's tray icon implementation
+#ifdef Q_OS_MAC
+void Notificator::notifyMacUserNotificationCenter(Class cls, const QString &title, const QString &text, const QIcon &icon) {
+    // icon is not supported by the user notification center yet. OSX will use the app icon.
+    MacNotificationHandler::instance()->showNotification(title, text);
+}
+
+#endif
+
 
 void Notificator::notify(Class cls, const QString &title, const QString &text, const QIcon &icon, int millisTimeout)
 {
@@ -285,12 +315,21 @@ void Notificator::notify(Class cls, const QString &title, const QString &text, c
     case QSystemTray:
         notifySystray(cls, title, text, icon, millisTimeout);
         break;
+  // QT5
+        /*
 #ifdef Q_OS_MAC
     case Growl12:
     case Growl13:
         notifyGrowl(cls, title, text, icon);
         break;
 #endif
+*/
+#ifdef Q_OS_MAC
+    case UserNotificationCenter:
+        notifyMacUserNotificationCenter(cls, title, text, icon);
+        break;
+#endif
+
     default:
         if(cls == Critical)
         {

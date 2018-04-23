@@ -1,9 +1,9 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2012 The Bitcoin developers
+// Copyright (c) 2009-2012 The Bitcoinold developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef BITCOIN_SERIALIZE_H
-#define BITCOIN_SERIALIZE_H
+#ifndef BITCOINOLD_SERIALIZE_H
+#define BITCOINOLD_SERIALIZE_H
 
 #include <string>
 #include <vector>
@@ -895,6 +895,7 @@ public:
     iterator insert(iterator it, const char& x=char()) { return vch.insert(it, x); }
     void insert(iterator it, size_type n, const char& x) { vch.insert(it, n, x); }
 
+/*
     void insert(iterator it, const_iterator first, const_iterator last)
     {
         assert(last - first >= 0);
@@ -907,6 +908,7 @@ public:
         else
             vch.insert(it, first, last);
     }
+*/    
 
     void insert(iterator it, std::vector<char>::const_iterator first, std::vector<char>::const_iterator last)
     {
