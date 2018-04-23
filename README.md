@@ -3,7 +3,7 @@ Bitcoinold integration/staging tree
 
 http://www.bitcoinold.org
 
-Copyright (c) 2009-2013 Bitcoinold Developers
+Copyright (c) 2018 Bitcoinold Developers
 
 What is Bitcoinold?
 ----------------

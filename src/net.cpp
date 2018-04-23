@@ -1198,19 +1198,19 @@ void MapPort(bool)
 // The first name is used as information source for addrman.
 // The second name should resolve to a list of seed addresses.
 static const char *strMainNetDNSSeed[][2] = {
-    {"seed2.athex.ru", "seed2.athex.ru"},
-    {"seed3.athex.ru", "seed3.athex.ru"},
-    {"seed1.athex.ru", "seed1.athex.ru"},
-    //{"dashjr.org", "dnsseed.bitcoinold.dashjr.org"},
-    //{"xf2.org", "bitseed.xf2.org"},
+    {"node1.bitcoinold.com", "node1.bitcoinold.com"},
+    {"node2.bitcoinold.com", "node2.bitcoinold.com"},
+    {"node3.bitcoinold.com", "node3.bitcoinold.com"},
+    {"node4.bitcoinold.com", "node4.bitcoinold.com"},
+    {"node5.bitcoinold.com", "node5.bitcoinold.com"},
+    {"node6.bitcoinold.com", "node6.bitcoinold.com"},
     {NULL, NULL}
 };
 
 static const char *strTestNetDNSSeed[][2] = {
-    {"seed2.athex.ru", "seed2.athex.ru"},
-    {"seed3.athex.ru", "seed3.athex.ru"},
-    {"seed1.athex.ru", "seed1.athex.ru"},
-    //{"seed2.athex.ru", "seed2.athex.ru"},
+     {"node11.bitcoinold.com", "node11.bitcoinold.com"},
+    {"node12.bitcoinold.com", "node12.bitcoinold.com"},
+    {"node13.bitcoinold.com", "node13.bitcoinold.com"},
     {NULL, NULL}
 };
 
