@@ -43,7 +43,7 @@ script: |
   #
   find -type f | xargs touch --date="$REFERENCE_DATETIME"
   #
-  cd bitcoinold
+  cd bitcoin-old-08
   mkdir -p $OUTDIR/src
   git archive HEAD | tar -x -C $OUTDIR/src
   cp $OUTDIR/src/doc/README_windows.txt $OUTDIR/readme.txt
