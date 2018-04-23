@@ -12,8 +12,8 @@ packages:
 - "faketime"
 reference_datetime: "2011-01-30 00:00:00"
 remotes:
-- "url": "https://dyavolick@bitbucket.org/dyavolick/bitcoinold.git"
-  "dir": "bitcoinold"
+- "url": "https://github.com/ateregulov/bitcoin-old-08.git"
+  "dir": "bitcoin-old-08"
 files:
 - "qt-win32-4.8.3-gitian-r1.zip"
 - "boost-win32-1.50.0-gitian2.zip"
